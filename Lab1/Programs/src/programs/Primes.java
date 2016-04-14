@@ -1,8 +1,10 @@
-package header;
+package programs;
 
 //Class to simulate a run time program.
 //Generates list of the first n prime numbers.
 import java.io.*;
+
+import header.Program;
 
 public class Primes extends Program
 {

@@ -1,8 +1,10 @@
-package header;
+package programs;
 
 //Class to simulate a run time program.
 //Solves the Tower of Hanoi problem for n disks.
 import java.io.*;
+
+import header.Program;
 
 public class Tower extends Program
 {

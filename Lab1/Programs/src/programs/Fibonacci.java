@@ -1,8 +1,11 @@
-package header;
+package programs;
 
 //Class to simulate a run time program.
 //Generates fibonacci sequences of numbers.
 import java.io.*;
+
+
+import header.Program;
 
 public class Fibonacci extends Program
 {

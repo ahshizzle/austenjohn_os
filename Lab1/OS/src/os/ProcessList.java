@@ -2,6 +2,7 @@ package os;
 
 public class ProcessList 
 {
+	/*
 	private Process     head;
 	private Process     tail;
 
@@ -14,4 +15,5 @@ public class ProcessList
 	public Process deQueue()        // Remove from the head.
 	public Process remove(long id); // Remove process from the list.
 	public Process find(long id);   // Find process in the queue.zAA
+	*/
 }

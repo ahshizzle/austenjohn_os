@@ -2,6 +2,7 @@ package os;
 
 public class Process 
 {
+	/*
 	public static final int RUNNING    = 0;
 	public static final int WAIT       = 1;
 	public static final int IDLE       = 2;
@@ -18,6 +19,7 @@ public class Process
 	private long endTime;        // End time after process completes.
 	private int  status;         // Process status.
 
+	
 	Class   className;           // Bytecode name of class.
 	Program classInstance;       // Class instance that can be called.
 
@@ -36,5 +38,6 @@ public class Process
     public String[] getArgs()
     public long getRunTime()
     public String getStatus()
-    public String toString()   
+    public String toString() 
+    */
 }

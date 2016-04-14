@@ -1,6 +1,6 @@
 package cli;
 
-public class Run implements CommandListener
+public class Run
 {
 
 }

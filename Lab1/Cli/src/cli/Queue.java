@@ -1,6 +1,6 @@
 package cli;
 
-public class Queue implements CommandListener
+public class Queue
 {
 
 }

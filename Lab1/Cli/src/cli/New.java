@@ -1,6 +1,6 @@
 package cli;
 
-public class New implements CommandListener
+public class New
 {
 
 }

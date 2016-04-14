@@ -1,6 +1,6 @@
 package cli;
 
-public class Cat implements CommandListener
+public class Cat
 {
 
 }
