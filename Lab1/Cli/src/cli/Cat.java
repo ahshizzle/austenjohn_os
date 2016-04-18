@@ -13,7 +13,7 @@ public class Cat extends CliCommand
 	String data;
 	try
 	{
-	    BufferedReader reader = new BufferedReader(new FileReader("d:" + args[0]));
+	    BufferedReader reader = new BufferedReader(new FileReader(args[0]));
 	    String line = reader.readLine();
 	    data = line + "\n";
 	    while (line != null)

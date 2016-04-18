@@ -21,7 +21,7 @@ public class Run extends CliCommand
 	try
 	{
 	    // Instantiate a PrintWriter object:
-	    out = new PrintWriter(new FileWriter("d:" + args[0] + ".bat"));
+	    out = new PrintWriter(new FileWriter(args[0] + ".bat"));
 	    while (!list.isEmpty())
 	    {
 		try
