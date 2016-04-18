@@ -1,19 +1,30 @@
 package cli;
 
+import java.io.IOException;
+
 import header.CliCommand;
+import header.Process;
 import header.ProcessList;
 
 public class Add extends CliCommand
 {
-	long pid = System.currentTimeMillis() % 100000;//create unique id
-	public Add()
+    @Override
+    public String execute(String[] args, ProcessList list)
+    {
+	long pid = System.currentTimeMillis() % 100000; // Create unique ID.
+	int priority = Thread.NORM_PRIORITY;
+	Process current = null;
+
+	try
 	{
-		super();
+	    current = new Process(args, priority, pid);
+	    Class.forName("programs." + current.getName());
 	}
-	
-	//System.currentTimeMillis()
-	public String execute(String args, ProcessList list) {
-		// TODO Auto-generated method stub
-		return null;
+	catch (ClassNotFoundException | IOException e)
+	{
 	}
+
+	list.enQueue(current);
+	return "process " + current.getName() + " added to batch";
+    }
 }

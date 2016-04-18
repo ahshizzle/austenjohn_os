@@ -1,22 +1,22 @@
 package programs;
 
-//Class to simulate a run time program.
-//Generates list of the first n prime numbers.
-import java.io.*;
+// Class to simulate a run time program.
+// Generates list of the first n prime numbers.
+import java.io.PrintWriter;
 
 import header.Program;
 
 public class Primes extends Program
 {
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  public Primes()
-  {
+    public Primes()
+    {
 	super("Prime Numbers Generator");
-  }
+    }
 
-  public int run(PrintWriter out, String[] args)
-  {
+    public int run(PrintWriter out, String[] args)
+    {
 	long maxNumber = Long.parseLong(args[1]);
 	if (maxNumber < 1)
 	    return (ILLEGAL_PARAMETER);
@@ -46,5 +46,5 @@ public class Primes extends Program
 	    currentNumber++;
 	}
 	return SUCCESS;
-  }
+    }
 }

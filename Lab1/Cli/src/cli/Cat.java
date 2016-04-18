@@ -1,43 +1,33 @@
 package cli;
 
-import java.io.*;
-
+import java.io.BufferedReader;
+import java.io.FileReader;
 import header.CliCommand;
 import header.ProcessList;
 
 public class Cat extends CliCommand
 {
-	
-	public Cat() throws IOException //throws FileNotFoundException
+    @Override
+    public String execute(String[] args, ProcessList list)
+    {
+	String data;
+	try
 	{
-		super();
-		try
-		{
-			String sCurrentLine;
-			BufferedReader br = new BufferedReader(new FileReader("C:\\testing.txt"));
-			do
-			{
-				sCurrentLine = br.readLine();
-				//console.write(sCurrentLine);
-			} while (sCurrentLine != null);
-			br.close();
-		}
-		catch (EOFException eof)
-		{
-			// catch exception
-		}
-		catch (Exception e)
-		{
-			// catch exception
-		}
+	    BufferedReader reader = new BufferedReader(new FileReader("d:" + args[0]));
+	    String line = reader.readLine();
+	    data = line + "\n";
+	    while (line != null)
+	    {
+		line = reader.readLine();
+		if (line != null)
+		    data += line + "\n";
+	    }	    
+	    reader.close();
 	}
-
-	
-
-	@Override
-	public String execute(String args, ProcessList list)
+	catch (Exception e)
 	{
-		// TODO Auto-generated method stub
-		return null;
+	    return "Couldn't open file " + args[0];
 	}
+	return data;
+    }
 }

@@ -1,22 +1,22 @@
 package programs;
 
-//Class to simulate a run time program.
-//Solves the Tower of Hanoi problem for n disks.
-import java.io.*;
+// Class to simulate a run time program.
+// Solves the Tower of Hanoi problem for n disks.
+import java.io.PrintWriter;
 
 import header.Program;
 
 public class Tower extends Program
 {
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  public Tower()
-  {
+    public Tower()
+    {
 	super("Tower of Hanoi Solver");
-  }
+    }
 
-  public int run(PrintWriter out, String[] args)
-  {
+    public int run(PrintWriter out, String[] args)
+    {
 	long maxNumber = Long.parseLong(args[1]);
 	if (maxNumber < 1)
 	    return (ILLEGAL_PARAMETER);
@@ -25,10 +25,10 @@ public class Tower extends Program
 
 	solve(out, maxNumber, "1", "2", "3");
 	return SUCCESS;
-  }
+    }
 
-  private void solve(PrintWriter out, long n, String start, String auxiliary, String end)
-  {
+    private void solve(PrintWriter out, long n, String start, String auxiliary, String end)
+    {
 	if (n == 1)
 	{
 	    out.println("Move from " + start + " to " + end);
@@ -39,5 +39,5 @@ public class Tower extends Program
 	    out.println("Move from " + start + " to " + end);
 	    solve(out, n - 1, auxiliary, start, end);
 	}
-  }
+    }
 }

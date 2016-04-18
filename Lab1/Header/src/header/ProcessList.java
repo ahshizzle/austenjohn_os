@@ -1,121 +1,121 @@
 package header;
 
-public class ProcessList 
+public class ProcessList
 {
 
-	private Process     head;
-	private Process     tail;
+    private Process head;
+    private Process tail;
 
-	public ProcessList() // Constructor.
+    public ProcessList() // Constructor. "WORKING!"
+    {
+	head = null;
+	tail = null;
+    }
+
+    public Process setPriority(long id, int priority) // Change priority. "NEED TO CHECK IF WORKING"
+    {
+	Process p = find(id);
+	p.setPriority(priority);
+	return p;
+    }
+
+    public String toString() // "WORKING!"
+    {
+	Process current = head;
+	String list = "";
+
+	if (isEmpty() == true) // If ProcessList is empty.
+	    return null; // Then return nothing.
+
+	list += current.toString();//adds current toString to list
+	while (current.next != null)
 	{
-		head = null;
+	    current = current.next;
+	    list += current.toString();
+	}
+
+	return list;
+    }
+
+    public boolean isEmpty() // Check if queue is Empty. "WORKING!"
+    {
+	if (head != null)
+	    return false;
+	else
+	    return true;
+    }
+
+    public Process peek() // Return the process at the head. "WORKING!"
+    {
+	return head;
+    }
+
+    public void enQueue(Process p) // Add process to the tail. "WORKING!"
+    {
+	if (isEmpty() == true)
+	{
+	    head = p;
+	    head.previous = null;
+	    head.next = null;
+	    tail = head;
+	}
+	else
+	{
+	    tail.next = p;	   // Add new Process in next Process of Tail.
+	    p.previous = tail; // Connect new Process to old Tail.
+	    tail = p;		   // Make the new Process the new Tail.
+	    p.next = null;	   // Set next Process of new Process to empty.
+	}
+
+    }
+
+    public Process deQueue() // Remove from the head. "WORKING!"
+    {
+	remove(head.getId());
+	return head;
+    }
+
+    public Process remove(long id)	// Remove process from the list. "WORKING!"
+    {
+	Process current = find(id);
+
+	if (current == null)		// If current Process is null.
+	    return null;
+
+	if (current == head)		// If Process is Head.
+	{
+	    head = current.next;
+	    
+	    if (current.next != null)	// More than 1 Process in the List
+		current.next.previous = null;
+
+	    if (current == tail)	// Only 1 Process in the List.
 		tail = null;
 	}
-	
-	public Process setPriority(long id, int priority)
+	else if (current == tail)	// If Process is Tail.
 	{
-		// Change priority.
-		return head;
+	    tail = tail.previous;
+	    current.previous.next = null;
 	}
-	
-	public String toString()
+	else				// If Process is not Head or Tail.
 	{
-		return "string";
+	    current.next.previous = current.previous;
+	    current.previous.next = current.next;
 	}
-	
-	public boolean isEmpty() 
-	{
-		// Check if queue is Empty.
-		return true;
-	}
-	
-	public Process peek()      
-	{
-		// Return the process at the head.
-		return head;
-	}
-	
-	public void enQueue(Process p) // // Add process to the tail. "ADD NODE"
-	{
-		if (head == null)
-		{
-			head = p;
-			head.previous = null;
-			head.next = null;
-		}
-		else
-		{
-			tail = head;
-			while (tail.next != null)
-			{
-				tail = tail.next;
-			}
-			tail.next = p;
-			p.previous = tail;
-			p.next = null;
-		}
-	}
-	
-	public Process deQueue()      
-	{
-		// Remove from the head.
-		return head;
-	}
-	public Process remove(long id) // Remove process from the list. "DELETE NODE"
-	{
-		Process current = null;
-		if (!(current == find(id)))
-		{
-			return null;
-		}
-		else
-		{
-			Process p = current.previous;
-	        Process n = current.next;
 
-	        //Connect next node and previous node
-	        if(p != null)
-	        {
-	          n.previous = p;
-	        }
-	        else
-	        {
-	        	head = n; 
-	        }
+	return current;
+    }
 
-	        //Connect previous node and next node
-	        if(n != null)
-	        {
-	        	p.next = n;
-	        }
-	        else
-	        {
-	        	p.next = null; 
-	        }
-	    }
-		
-		/*if (head == current) // Root.
-			head = current.next;
-		else if (head.next == null) // ProcessList only have 2 nodes.
-			head.next = current;
-		else if (current.next != null) // CurrentProcess has next Process.
-			current = current.next;
-		else
-		*/
-			
+    public Process find(long id) // Find process in the queue. "WORKING!"
+    {
+	Process current = head;
+	while (current != null)
+	{
+	    if (current.getId() == id)
 		return current;
+	    else
+		current = current.next;
 	}
-	
-	public Process find(long id) // Find process in the queue. "FIND NODE"
-	{
-		Process current = head;
-		while (current != null)
-		{
-			if (current.getId() == id)
-				return current;
-			else
-				current = current.next;
-		}
-		return null;
-	}
+	return null;
+    }
 }

@@ -1,23 +1,22 @@
 package programs;
 
-//Class to simulate a run time program.
-//Generates fibonacci sequences of numbers.
-import java.io.*;
-
+// Class to simulate a run time program.
+// Generates fibonacci sequences of numbers.
+import java.io.PrintWriter;
 
 import header.Program;
 
 public class Fibonacci extends Program
 {
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  public Fibonacci()
-  {
+    public Fibonacci()
+    {
 	super("Fibonacci Calculator");
-  }
+    }
 
-  public int run(PrintWriter out, String[] args)
-  {
+    public int run(PrintWriter out, String[] args)
+    {
 	long maxNumber = Long.parseLong(args[1]);
 	if (maxNumber < 1)
 	    return (ILLEGAL_PARAMETER);
@@ -36,5 +35,5 @@ public class Fibonacci extends Program
 	    out.println(newNumber);
 	}
 	return SUCCESS;
-  }
+    }
 }
