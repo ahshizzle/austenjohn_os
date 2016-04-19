@@ -6,20 +6,20 @@ public class ProcessList
     private Process head;
     private Process tail;
 
-    public ProcessList() // Constructor. "WORKING!"
+    public ProcessList() // Constructor.
     {
 	head = null;
 	tail = null;
     }
 
-    public Process setPriority(long id, int priority) // Change priority. "NEED TO CHECK IF WORKING"
+    public Process setPriority(long id, int priority) // Change priority.
     {
 	Process p = find(id);
 	p.setPriority(priority);
 	return p;
     }
 
-    public String toString() // "WORKING!"
+    public String toString()
     {
 	Process current = head;
 	String list = "";
@@ -37,7 +37,7 @@ public class ProcessList
 	return list;
     }
 
-    public boolean isEmpty() // Check if queue is Empty. "WORKING!"
+    public boolean isEmpty() // Check if queue is Empty.
     {
 	if (head != null)
 	    return false;
@@ -45,12 +45,12 @@ public class ProcessList
 	    return true;
     }
 
-    public Process peek() // Return the process at the head. "WORKING!"
+    public Process peek() // Return the process at the head.
     {
 	return head;
     }
 
-    public void enQueue(Process p) // Add process to the tail. "WORKING!"
+    public void enQueue(Process p) // Add process to the tail.
     {
 	if (isEmpty() == true)
 	{
@@ -61,43 +61,43 @@ public class ProcessList
 	}
 	else
 	{
-	    tail.next = p;	   // Add new Process in next Process of Tail.
+	    tail.next = p; // Add new Process in next Process of Tail.
 	    p.previous = tail; // Connect new Process to old Tail.
-	    tail = p;		   // Make the new Process the new Tail.
-	    p.next = null;	   // Set next Process of new Process to empty.
+	    tail = p; // Make the new Process the new Tail.
+	    p.next = null; // Set next Process of new Process to empty.
 	}
 
     }
 
-    public Process deQueue() // Remove from the head. "WORKING!"
+    public Process deQueue() // Remove from the head.
     {
 	remove(head.getId());
 	return head;
     }
 
-    public Process remove(long id)	// Remove process from the list. "WORKING!"
+    public Process remove(long id) // Remove process from the list.
     {
 	Process current = find(id);
 
-	if (current == null)		// If current Process is null.
+	if (current == null) // If current Process is null.
 	    return null;
 
-	if (current == head)		// If Process is Head.
+	if (current == head) // If Process is Head.
 	{
 	    head = current.next;
-	    
-	    if (current.next != null)	// More than 1 Process in the List
+
+	    if (current.next != null) // More than 1 Process in the List
 		current.next.previous = null;
 
-	    if (current == tail)	// Only 1 Process in the List.
+	    if (current == tail) // Only 1 Process in the List.
 		tail = null;
 	}
-	else if (current == tail)	// If Process is Tail.
+	else if (current == tail) // If Process is Tail.
 	{
 	    tail = tail.previous;
 	    current.previous.next = null;
 	}
-	else				// If Process is not Head or Tail.
+	else // If Process is not Head or Tail.
 	{
 	    current.next.previous = current.previous;
 	    current.previous.next = current.next;
@@ -106,7 +106,7 @@ public class ProcessList
 	return current;
     }
 
-    public Process find(long id) // Find process in the queue. "WORKING!"
+    public Process find(long id) // Find process in the queue.
     {
 	Process current = head;
 	while (current != null)
