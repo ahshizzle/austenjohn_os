@@ -8,12 +8,7 @@ import header.ProcessList;
 
 public class Add extends CliCommand
 {
-    public Add() {
-		super("Add");
-		// TODO Auto-generated constructor stub
-	}
-
-	@Override
+    @Override
     public String execute(String[] args, ProcessList list)
     {
 	long pid = System.currentTimeMillis() % 100000; // Create unique ID.
@@ -23,7 +18,7 @@ public class Add extends CliCommand
 	try
 	{
 	    current = new Process(args, priority, pid);
-	    //Class.forName("programs." + current.getName());
+	    Class.forName("programs." + current.getName());
 	}
 	catch (ClassNotFoundException | IOException e)
 	{

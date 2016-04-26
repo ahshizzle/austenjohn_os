@@ -7,12 +7,7 @@ import header.ProcessList;
 
 public class Cat extends CliCommand
 {
-    public Cat() {
-		super("Cat");
-		// TODO Auto-generated constructor stub
-	}
-
-	@Override
+    @Override
     public String execute(String[] args, ProcessList list)
     {
 	String data;

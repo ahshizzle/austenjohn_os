@@ -6,11 +6,6 @@ import header.ProcessList;
 
 public class Remove extends CliCommand
 {
-    public Remove() {
-		super("Remove");
-		// TODO Auto-generated constructor stub
-	}
-	
     @Override
     public String execute(String[] args, ProcessList list)
     {

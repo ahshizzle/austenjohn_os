@@ -14,41 +14,45 @@ public class Process
 
     public static final int ABORTED    = 4;
 
-    private String[]	    args;	   	// The calling arguments.
-    private long	    id;		   	// Process Id number (pid).
-    private int		    priority;	   	// Priority.
-    private long	    startTime;		// Process start time.
+    private String[]	    args;	   // The calling arguments.
+    private long	    id;		   // Process Id number (pid).
+    private int		    priority;	   // Priority.
+    private long	    startTime;	   // Process start time.
 
-    private long	    endTime;		// End time after process completes.
-    private int		    status;		// Process status.
+    private long	    endTime;	   // End time after process completes.
+    private int		    status;	   // Process status.
 
-    Class<?>		    className;		// Bytecode name of class.
-    Program		    classInstance;	// Class instance that can be called.
+    Class<?>		    className;	   // Bytecode name of class.
+    Program		    classInstance; // Class instance that can be called.
 
-    public Process	    next;		// Links for next and previous list entries.
+    public Process	    next;	   // Links for next and previous list entries.
     public Process	    previous;
 
     // Constructors and methods.
     public Process(String[] args, int priority, long id) throws ClassNotFoundException, IOException
     {
-		this.args = args;
-		this.priority = priority;
-		this.id = id;
-		status = IDLE;
-		next = null;
-		previous = null;
-		Class.forName("programs." + getName());
+	this.args = args;
+	this.priority = priority;
+	this.id = id;
+	status = IDLE;
+	next = null;
+	previous = null;
+	className = Class.forName("programs." + getName());
     }
 
-    public String run(PrintWriter out) throws InstantiationException, IllegalAccessException, InterruptedException
+    public String run(PrintWriter out) throws InstantiationException, IllegalAccessException
     {
-	classInstance = (Program)className.newInstance();  // Instantiate the class file
-	int result = classInstance.run(out,args);  // Call the program’s run method
+	// Make a class instance:
+	classInstance = (Program) className.newInstance();
+
+	// Call the run method:
+	int result = classInstance.run(out, args);
+
 	if (result == 0)
-	    return getName() + " ran successfully time = " + getRunTime();
+	    return getName() + " ran successfully time = " + getRunTime() + "\n";
 	else
-	    return getName() + " ran unsuccessful";
-    }//end run
+	    return getName() + " ran unsuccessfully." + "\n";
+    }
 
     public void setPriority(int priority)
     {
@@ -103,12 +107,9 @@ public class Process
     public String toString()
     {
 	String joinedArgs = String.join(" ", getArgs());
-	String joinedStrings =  String.format("%-5s", getName()) + "\t";
-	       joinedStrings += String.format("%-5d", getId()) + "\t";
-	       joinedStrings += String.format("%-5s", getStatus()) + "\t";
-	       joinedStrings += String.format("%-5d", getRunTime()) + "\t";
-	       joinedStrings += String.format("%-5d", getPriority()) + "\t";
-	       joinedStrings += String.format("%-5s", joinedArgs) + "\t" + "\n";
+	String joinedStrings = String.format("%-5s", getName()) + "\t" + String.format("%-5d", getId()) + "\t"
+		+ String.format("%-5s", getStatus()) + "\t" + String.format("%-5d", getRunTime()) + "\t"
+		+ String.format("%-5d", getPriority()) + "\t" + String.format("%-5s", joinedArgs) + "\n";
 	return joinedStrings;
     }
 }

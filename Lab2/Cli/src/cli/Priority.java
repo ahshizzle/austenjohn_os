@@ -9,11 +9,7 @@ import header.Process;
 // Valid priorities are from Thread.MIN_PRIORITY to Thread.MAX_PRIORITY - 1.
 public class Priority extends CliCommand
 {
-    public Priority() {
-		super("Priority");
-		// TODO Auto-generated constructor stub
-	}
-    
+
     @Override
     public String execute(String[] args, ProcessList list)
     {
